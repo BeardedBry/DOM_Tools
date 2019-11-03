@@ -1,0 +1,50 @@
+{
+  "name": "DOM Tools",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Tools to speed up repetitive tasks",
+  "homepage_url": "http://www.google.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": ["src/background.js"],
+    "persistent": true
+  },
+  "options_page": "src/options/index.html",
+  "browser_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "DOM tools"
+  },
+  "chrome_url_overrides": {
+    "newtab": "src/override/override.html"
+  },
+  "permissions": [
+    "clipboardRead",
+    "clipboardWrite",
+    "tabs",
+    "https://*/*",
+    "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/*"
+      ],
+      "css": [
+        "src/inject/inject.css"
+      ]
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content.js"
+      ]
+    }
+  ]
+}
